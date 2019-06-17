@@ -1,4 +1,4 @@
-class AncilePolicyException(Exception):
+class PolicyException(Exception):
     pass
 
 class AncileException(Exception):
