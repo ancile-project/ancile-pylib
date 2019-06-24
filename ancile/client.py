@@ -30,13 +30,13 @@ class AncileClient:
 
         if not url:
             raise ValueError("No API URL specified")
-        
+
         if not purpose:
             raise ValueError("No purpose specified")
-        
+
         if not users:
             raise ValueError("No users specified")
-        
+
         request_json = {
             "token": token
             "program": program,
