@@ -4,5 +4,5 @@ class PolicyException(Exception):
 class AncileException(Exception):
     pass
 
-class ArgumentNumberMismatch(Exception)
+class ArgumentNumberMismatch(Exception):
     pass

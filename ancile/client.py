@@ -38,7 +38,7 @@ class AncileClient:
             raise ValueError("No users specified")
 
         request_json = {
-            "token": token
+            "token": self.__token,
             "program": program,
             "purpose": purpose,
             "users": users,
@@ -47,7 +47,7 @@ class AncileClient:
         ancile_response = post(url, json=request_json).json()
 
         if ancile_response["status"] != "ok":
-            if "Policy" in self.ancile_response["error"]:
+            if "Policy" in ancile_response["traceback"]:
                 raise PolicyException
             
             else:
