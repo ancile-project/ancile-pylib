@@ -15,7 +15,7 @@ def fix_gap(function_string):
     """
     matches = re.findall(SPACE_REGEX, function_string)
     fixed_gap = function_string.replace(matches[0], '\n') if matches else function_string
-    return fixed_gap.strip()
+    return fixed_gap
 
 
 def regex_repl_function(true_args):

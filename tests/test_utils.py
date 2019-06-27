@@ -7,18 +7,21 @@ class TestFixGap(unittest.TestCase):
 
         first_case = '''@ancile_function
 def my_func():
-    return x'''
+    return x
+'''
 
         second_case = '''@ancile_function
 def my_func():
     def my_func_second():
-        return "nest"'''
+        return "nest"
+'''
 
         self.assertEqual(
             fix_gap(first_case),
             '''@ancile_function
 def my_func():
-    return x'''
+    return x
+'''
         )
 
         self.assertEqual(
@@ -26,30 +29,35 @@ def my_func():
             '''@ancile_function
 def my_func():
     def my_func_second():
-        return "nest"'''
+        return "nest"
+'''
         )
     
     def test_manygaps(self):
         first_case = '''    @ancile_function
     def my_func():
-        return x'''
+        return x
+'''
 
         second_case = '''       @ancile_function
         def my_func():
             def my_func_second():
-                return "nest"'''
+                return "nest"
+'''
         
         self.assertEqual(
             fix_gap(first_case),
-            '''@ancile_function
+            '''    @ancile_function
 def my_func():
-    return x'''
+    return x
+'''
         )
 
         self.assertEqual(
             fix_gap(second_case),
-            '''@ancile_function
+            '''       @ancile_function
 def my_func():
     def my_func_second():
-        return "nest"'''
+        return "nest"
+'''
         )
