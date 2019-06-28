@@ -45,8 +45,6 @@ class AncileClient:
             Makes a POST request to the ancile server with your program and users.
 
             :param program: String of ancile program
-            :param url: Ancile server URL
-            :param purpose: Ancile app purpose
             :param users: list of users
             :return response data from
         """

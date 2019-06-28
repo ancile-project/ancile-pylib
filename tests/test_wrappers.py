@@ -1,17 +1,17 @@
 import unittest
-from ancile.wrappers import ancile_function
+from ancile.wrappers import ancile_program
 
-class TestAncileFunction(unittest.TestCase):
+class TestAncileProgram(unittest.TestCase):
 
     def test_noargs(self):
 
-        @ancile_function
+        @ancile_program
         def my_func():
             x = 5
             y = x + 1
             return y
 
-        @ancile_function
+        @ancile_program
         def my_second_func():
             my_second_func_var = 5
             return my_second_func_var
@@ -35,7 +35,7 @@ return my_second_func_var
 
         do_something = lambda x: x
 
-        @ancile_function
+        @ancile_program
         def my_func(x):
             y = do_something(x)
             return y
@@ -54,3 +54,28 @@ return my_second_func_var
             my_func([1,2]),
             "y = do_something([1, 2])\nreturn y\n"
         )
+
+    def test_twoargs(self):
+
+        do_something = lambda x: x
+
+        @ancile_program
+        def my_func(x, z):
+            y = do_something(x, z)
+            return y
+
+        self.assertEqual(
+            my_func(5, 4),
+            "y = do_something(5, 4)\nreturn y\n"
+        )
+
+        self.assertEqual(
+            my_func("user", "sam"),
+            "y = do_something('user', 'sam')\nreturn y\n"
+        )
+
+        self.assertEqual(
+            my_func([1,2], [3,4]),
+            "y = do_something([1, 2], [3, 4])\nreturn y\n"
+        )
+

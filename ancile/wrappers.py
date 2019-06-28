@@ -7,7 +7,7 @@ import re
 from ancile.errors import ArgumentNumberMismatch
 from ancile.utils import fix_gap, regex_repl_function
 
-def ancile_function(func):
+def ancile_program(func):
     """
     Generates ancile program
 
@@ -15,7 +15,7 @@ def ancile_function(func):
 
     e.g.:
 
-    >> @ancile_function
+    >> @ancile_program
     .. def test_function():
            print("Test")
 
@@ -34,6 +34,7 @@ def ancile_function(func):
     exp_args, exp_kwargs, exp_kwargs_index = [], {}, {}
 
     for index, arg in enumerate(split_args):
+        arg = arg.strip()
         if not arg.startswith("*"):
             if "=" in arg:
                 key, value = arg.split("=")
@@ -42,16 +43,16 @@ def ancile_function(func):
             elif arg:
                 exp_args.append(arg)
 
-        # potentially add support for *args and **kwargs
+    # potentially add support for *args and **kwargs
 
-        # if len(parsed_args) > 0:
-        #     mul_kwargs = parsed_args[-1].startswith("**")
-        #     mul_kwargs_kw = parsed_args[-1] if mul_kwargs else None
-        #     mul_args = (parsed_args[-1].startswith("*") ^ mul_kwargs) or (len(parsed_args) > 1 \
-        #         and parsed_args[-2].startswith("*"))
-        #     mul_args_kw = parsed_args[:-(1+mul_kwargs)] if mul_args else None
-        # else:
-        #     mul_kwargs = mul_args = False
+    # if len(parsed_args) > 0:
+    #     mul_kwargs = parsed_args[-1].startswith("**")
+    #     mul_kwargs_kw = parsed_args[-1] if mul_kwargs else None
+    #     mul_args = (parsed_args[-1].startswith("*") ^ mul_kwargs) or (len(parsed_args) > 1 \
+    #         and parsed_args[-2].startswith("*"))
+    #     mul_args_kw = parsed_args[:-(1+mul_kwargs)] if mul_args else None
+    # else:
+    #     mul_kwargs = mul_args = False
 
     if not exp_args and not exp_kwargs:
         return lambda: code
@@ -95,7 +96,7 @@ def ancile_function(func):
         ## use string substitution to generate an ancile program
         ## using the function parameters
 
-        var_regex = r"([^\w])(" + "|".join(true_args) + r")([^\w])"
+        var_regex = r"([^\w]|^)(" + "|".join(true_args) + r")([^\w])"
         repl_function = regex_repl_function(true_args)
 
         final_code = re.sub(var_regex, repl_function, code)
