@@ -1,8 +1,21 @@
+"""
+    Exceptions to make catching ancile
+    server-side errors easier.
+"""
+
 class PolicyException(Exception):
-    pass
+    """
+        When the program does not match the
+        user's policy.
+    """
 
 class AncileException(Exception):
-    pass
+    """
+        Non-policy related server-side ancile exception.
+    """
 
 class ArgumentNumberMismatch(Exception):
-    pass
+    """
+        If the arguments given do not match the number
+        of arguments specified for an ancile function.
+    """

@@ -10,8 +10,6 @@ class TestAncileFunction(unittest.TestCase):
             x = 5
             y = x + 1
             return y
-        
-        print(my_func())
 
         @ancile_function
         def my_second_func():

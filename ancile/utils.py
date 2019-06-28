@@ -1,22 +1,16 @@
 """
     utilities used by the parser
 """
-import re
 
-SPACE_REGEX = r"(\n *)def "
-
-
-def fix_gap(function_string):
+def fix_gap(function_tuple):
     """
     removes unnecessary whitespace gap if the function is nested
 
     :param function_string: String of function definition
     :return triuncated function
     """
-    matches = re.findall(SPACE_REGEX, function_string)
-    fixed_gap = function_string.replace(matches[0], '\n') if matches else function_string
-    return fixed_gap
-
+    gap_size = len(function_tuple[0]) - len(function_tuple[0].lstrip())
+    return ''.join(line[gap_size:] for line in function_tuple)
 
 def regex_repl_function(true_args):
     """
@@ -25,7 +19,7 @@ def regex_repl_function(true_args):
     :param true_args: Dictionary-like object of arg inputs.
     :return replacement function
     """
-    
+
     def repl_function(match_object):
         before, arg, after = match_object.groups()
         real_arg = true_args[arg]
