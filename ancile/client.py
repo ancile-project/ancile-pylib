@@ -57,10 +57,10 @@ class AncileClient:
 
         ancile_response = post(self.__url, json=request_json).json()
 
-        if ancile_response["status"] != "ok":
+        if ancile_response["result"] != "ok":
             if "Policy" in ancile_response["traceback"]:
-                raise PolicyException
+                raise PolicyException("The policy prevented this program from executing.")
 
-            raise AncileException
+            raise AncileException(ancile_response["traceback"])
 
         return ancile_response["data"]
