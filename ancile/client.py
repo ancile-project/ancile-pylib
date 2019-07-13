@@ -46,7 +46,7 @@ class AncileClient:
 
             :param program: String of ancile program
             :param users: list of users
-            :return response data from
+            :returns: response data from
         """
         request_json = {
             "token": self.__token,

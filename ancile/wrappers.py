@@ -9,18 +9,14 @@ from ancile.utils import fix_gap, regex_repl_function
 
 def ancile_program(func):
     """
-    Generates ancile program
+    Generates ancile program from a python function. Uses string
+    substitution to replace any instance of the paramters with the
+    passed in argument.
+
+
 
     :param func: Function to be ancile-fied
-
-    e.g.:
-
-    >> @ancile_program
-    .. def test_function():
-           print("Test")
-
-    >> test_function()
-    "print(\"Test\")\n"
+    :returns: String representing ancile program
     """
 
     code_list = getsourcelines(func)[0]

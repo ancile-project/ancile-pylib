@@ -8,7 +8,7 @@ def fix_gap(function_tuple):
     removes unnecessary whitespace gap if the function is nested
 
     :param function_string: String of function definition
-    :return triuncated function
+    :returns: triuncated function
     """
     gap_size = len(function_tuple[0]) - len(function_tuple[0].lstrip())
     return ''.join(line[gap_size:] for line in function_tuple)
@@ -18,7 +18,7 @@ def regex_repl_function(true_args):
     generates a replacement function for re.sub method
 
     :param true_args: Dictionary-like object of arg inputs.
-    :return replacement function
+    :returns: replacement function
     """
 
     def repl_function(match_object):
@@ -43,7 +43,7 @@ def build_programs(program, args=None, kwargs=None):
         :param program: Ancile program function
         :param args: List or tuple containing lists or tuples of arguments
         :param kwargs: List or tuple containing dictionaries of arguments
-        :return ancile program string
+        :returns: ancile program string
     """
     if not args and not kwargs:
         raise ArgumentNumberMismatch("No arguments provided")
