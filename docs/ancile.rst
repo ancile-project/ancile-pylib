@@ -1,10 +1,7 @@
-ancile package
-==============
+Ancile Package Contents
+=======================
 
-Submodules
-----------
-
-ancile.client module
+ancile.client
 --------------------
 
 .. automodule:: ancile.client
@@ -12,7 +9,7 @@ ancile.client module
    :undoc-members:
    :show-inheritance:
 
-ancile.errors module
+ancile.errors
 --------------------
 
 .. automodule:: ancile.errors
@@ -20,18 +17,19 @@ ancile.errors module
    :undoc-members:
    :show-inheritance:
 
-ancile.utils module
--------------------
+ancile.programs
+----------------------
 
-.. automodule:: ancile.utils
+.. automodule:: ancile.programs
    :members:
    :undoc-members:
    :show-inheritance:
 
-ancile.wrappers module
-----------------------
 
-.. automodule:: ancile.wrappers
+ancile.utils
+-------------------
+
+.. automodule:: ancile.utils
    :members:
    :undoc-members:
    :show-inheritance:
