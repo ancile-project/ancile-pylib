@@ -1,8 +1,6 @@
 """
-    utilities used by the parser
+    Utilities used internally by the parsers.
 """
-from ancile.errors import ArgumentNumberMismatch
-
 def fix_gap(function_tuple):
     """
     removes unnecessary whitespace gap if the function is nested
@@ -31,24 +29,3 @@ def regex_repl_function(true_args):
         return before + true_arg + after
 
     return repl_function
-
-def build_programs(program, args=None, kwargs=None):
-    """
-        Build the same program for multiple users
-        with different arguments
-
-        Both args and kwargs must have the same length, or exactly one
-        of them has to be null
-
-        :param program: Ancile program function
-        :param args: List or tuple containing lists or tuples of arguments
-        :param kwargs: List or tuple containing dictionaries of arguments
-        :returns: ancile program string
-    """
-    if not args and not kwargs:
-        raise ArgumentNumberMismatch("No arguments provided")
-
-    args = args or iter(list, None)
-    kwargs = kwargs or iter(dict, None)
-
-    return "\n".join(program(*arg, **kwarg) for arg, kwarg in zip(args, kwargs))

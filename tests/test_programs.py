@@ -1,5 +1,5 @@
 import unittest
-from ancile.wrappers import ancile_program
+from ancile.programs import ancile_program, build_programs
 
 class TestAncileProgram(unittest.TestCase):
 
@@ -116,3 +116,20 @@ return my_second_func_var
             another_func("first", "second", 43),
             "first = type('second')\nreturn first, 43, test\n"
         )
+
+class TestBuildPrograms(unittest.TestCase):
+
+    def test_onlyargs(self):
+
+        first_case = [("Tim", 5), ("Another", 54)]
+        second_case = (["Testing", 34], ["Testing #2", -32])
+
+        @ancile_program
+        def my_func(name, age):
+            name + " " + str(age)
+
+        self.assertEqual(build_programs(my_func, first_case),
+                         "'Tim' + \" \" + str(5)\n\n'Another' + \" \" + str(54)\n")
+
+        self.assertEqual(build_programs(my_func, second_case),
+                         "'Testing' + \" \" + str(34)\n\n'Testing #2' + \" \" + str(-32)\n")
