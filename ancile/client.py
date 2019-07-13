@@ -63,4 +63,4 @@ class AncileClient:
 
             raise AncileException(ancile_response["traceback"])
 
-        return ancile_response
+        return ancile_response["data"]
