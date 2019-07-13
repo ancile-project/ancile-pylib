@@ -117,6 +117,34 @@ return my_second_func_var
             "first = type('second')\nreturn first, 43, test\n"
         )
 
+    def test_lists(self):
+
+        @ancile_program
+        def my_func(_my_list, another_list):
+            print(_my_list)
+            print(another_list)
+        
+        my_list = ["Sam", 1, "Hello"]
+
+        self.assertEqual(
+            my_func(my_list, my_list),
+            "print([Sam, 1, Hello])\nprint(['Sam', 1, 'Hello'])\n"
+        )
+    
+    def test_tuples(self):
+
+        @ancile_program
+        def my_func(_my_tuple, another_tuple):
+            print(_my_tuple)
+            print(another_tuple)
+        
+        my_tuple = ("Sam", 1, "Hello")
+
+        self.assertEqual(
+            my_func(my_tuple, my_tuple),
+            "print((Sam, 1, Hello))\nprint(('Sam', 1, 'Hello'))\n"
+        )
+
 class TestBuildPrograms(unittest.TestCase):
 
     def test_onlyargs(self):

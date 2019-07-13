@@ -24,6 +24,10 @@ def regex_repl_function(true_args):
         real_arg = true_args[arg]
         if isinstance(real_arg, str) and arg[0] != "_":
             true_arg = "'" + real_arg + "'"
+        elif isinstance(real_arg, list) and arg[0] == "_":
+            true_arg = "[" + ", ".join(map(str, real_arg)) + "]"
+        elif isinstance(real_arg, tuple) and arg[0] == "_":
+            true_arg = "(" + ", ".join(map(str, real_arg)) + ")"
         else:
             true_arg = str(real_arg)
         return before + true_arg + after
