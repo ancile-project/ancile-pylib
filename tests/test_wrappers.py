@@ -78,4 +78,41 @@ return my_second_func_var
             my_func([1,2], [3,4]),
             "y = do_something([1, 2], [3, 4])\nreturn y\n"
         )
+    
+    def test_with_underscore_param(self):
 
+        @ancile_program
+        def my_func(_param_name, _user="Sam"):
+            _param_name = type(_user)
+        
+
+        self.assertEqual(
+            my_func("param"),
+            "param = type(Sam)\n"
+        )
+    
+    def test_with_gap_beggining(self):
+        @ancile_program
+        def my_func():
+
+
+
+            return
+        
+        @ancile_program
+        def another_func(_param, name, year=0, _type="test"):
+
+
+            _param = type(name)
+
+            return _param, year, _type
+        
+        self.assertEqual(
+            my_func(),
+            "return\n"
+        )
+
+        self.assertEqual(
+            another_func("first", "second", 43),
+            "first = type('second')\nreturn first, 43, test\n"
+        )

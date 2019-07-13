@@ -25,7 +25,7 @@ def ancile_program(func):
 
     code_list = getsourcelines(func)[0]
     args_line = code_list[1]
-    code = fix_gap(code_list[2:])
+    code = fix_gap([line for line in code_list[2:] if line.strip()])
 
     first_paren = args_line.index("(") + 1
     second_paren = args_line.index(")")
