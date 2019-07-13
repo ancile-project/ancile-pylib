@@ -24,7 +24,10 @@ def regex_repl_function(true_args):
     def repl_function(match_object):
         before, arg, after = match_object.groups()
         real_arg = true_args[arg]
-        true_arg = "'" + real_arg + "'" if isinstance(real_arg, str) else str(real_arg)
+        if isinstance(real_arg, str) and arg[0] != "_":
+            true_arg = "'" + real_arg + "'"
+        else:
+            true_arg = str(real_arg)
         return before + true_arg + after
 
     return repl_function
