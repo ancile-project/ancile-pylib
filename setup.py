@@ -10,6 +10,7 @@ import sys
 from shutil import rmtree
 
 from setuptools import find_packages, setup, Command
+from sphinx.setup_command import BuildDoc
 
 # Package meta-data.
 NAME = 'ancile-pylib'
@@ -127,5 +128,6 @@ setup(
     # $ setup.py publish support.
     cmdclass={
         'upload': UploadCommand,
+        'build_sphinx': BuildDoc
     },
 )
