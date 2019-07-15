@@ -7,6 +7,7 @@ import re
 from ancile.errors import ArgumentNumberMismatch
 from ancile.utils import fix_gap, regex_repl_function
 
+
 def ancile_program(func):
     """
     Generates ancile program from a python function. Uses string
@@ -58,17 +59,19 @@ def ancile_program(func):
         if len(args) + len(kwargs) < len(exp_args):
             raise ArgumentNumberMismatch(
                 "{1} arguments, expecting {0} or more.".format(
-                    len(exp_args),
-                    len(args)+len(kwargs)))
+                    len(exp_args), len(args) + len(kwargs)
+                )
+            )
 
         true_args = {arg_name: arg for arg_name, arg in zip(exp_args, args)}
 
         if len(args) < len(exp_args):
 
-            for arg in exp_args[len(args):]:
+            for arg in exp_args[len(args) :]:
                 if arg not in kwargs:
                     raise ArgumentNumberMismatch(
-                        "Mandatory parameter {} does not have an argument.".format(arg))
+                        "Mandatory parameter {} does not have an argument.".format(arg)
+                    )
 
                 true_args[arg] = kwargs.pop(arg)
 
@@ -78,7 +81,9 @@ def ancile_program(func):
                 if index not in exp_kwargs_index:
                     raise ArgumentNumberMismatch(
                         "Expected maximum of {} arguments, received {}.".format(
-                            len(exp_args) + len(exp_kwargs), len(args) + len(kwargs)))
+                            len(exp_args) + len(exp_kwargs), len(args) + len(kwargs)
+                        )
+                    )
 
                 true_args[exp_kwargs_index[index]] = args[index]
 
@@ -99,6 +104,7 @@ def ancile_program(func):
         return final_code
 
     return final_function
+
 
 def build_programs(program, args=None, kwargs=None):
     """

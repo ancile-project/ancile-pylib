@@ -6,6 +6,7 @@
 from requests import post
 from ancile.errors import AncileException, PolicyException
 
+
 class AncileClient:
     """
         Client responsible for making requests and receiving
@@ -59,7 +60,9 @@ class AncileClient:
 
         if ancile_response["result"] != "ok":
             if "Policy" in ancile_response["traceback"]:
-                raise PolicyException("The policy prevented this program from executing.")
+                raise PolicyException(
+                    "The policy prevented this program from executing."
+                )
 
             raise AncileException(ancile_response["traceback"])
 

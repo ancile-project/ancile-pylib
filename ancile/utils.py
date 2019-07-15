@@ -1,6 +1,8 @@
 """
     Utilities used internally by the parsers.
 """
+
+
 def fix_gap(function_tuple):
     """
     removes unnecessary whitespace gap if the function is nested
@@ -9,7 +11,8 @@ def fix_gap(function_tuple):
     :returns: triuncated function
     """
     gap_size = len(function_tuple[0]) - len(function_tuple[0].lstrip())
-    return ''.join(line[gap_size:] for line in function_tuple)
+    return "".join(line[gap_size:] for line in function_tuple)
+
 
 def regex_repl_function(true_args):
     """

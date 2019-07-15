@@ -3,16 +3,19 @@
     server-side errors easier.
 """
 
+
 class PolicyException(Exception):
     """
         When the program does not match the
         user's policy.
     """
 
+
 class AncileException(Exception):
     """
         Non-policy related server-side ancile exception.
     """
+
 
 class ArgumentNumberMismatch(Exception):
     """
