@@ -1,7 +1,7 @@
 """
     Utilities used internally by the parsers.
 """
-
+from urllib.parse import urljoin
 
 def fix_gap(function_tuple):
     """
@@ -36,3 +36,12 @@ def regex_repl_function(true_args):
         return before + true_arg + after
 
     return repl_function
+
+def generate_url(ancile_url):
+    """
+        Generate an API endpoint url from URL base
+
+        :param ancile_url: root URL of ancile instance
+        :returns: API endpoint URL 
+    """
+    return urljoin(ancile_url, "api/run")

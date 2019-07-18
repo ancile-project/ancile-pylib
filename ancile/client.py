@@ -5,6 +5,7 @@
 """
 from requests import post
 from ancile.errors import AncileException, PolicyException
+from ancile.utils import generate_url
 
 
 class AncileClient:
@@ -12,12 +13,16 @@ class AncileClient:
         Client responsible for making requests and receiving
         responses from ancile server. Needs ancile token
         and URL.
+
+        :param token: Ancile API token
+        :param url: Ancile instance root URL
+        :param purpose: The app's purpose in Ancile settings
     """
 
     def __init__(self, token, url, purpose):
 
         self.__token = token
-        self.__url = url
+        self.__url = generate_url(url)
         self.__purpose = purpose
 
     @property
