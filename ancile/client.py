@@ -16,14 +16,12 @@ class AncileClient:
 
         :param token: Ancile API token
         :param url: Ancile instance root URL
-        :param purpose: The app's purpose in Ancile settings
     """
 
-    def __init__(self, token, url, purpose):
+    def __init__(self, token, url):
 
         self.__token = token
         self.__url = generate_url(url)
-        self.__purpose = purpose
 
     @property
     def token(self):
@@ -39,13 +37,6 @@ class AncileClient:
         """
         return self.__token
 
-    @property
-    def purpose(self):
-        """
-            the purpose of the ancile app
-        """
-        return self.__purpose
-
     def execute(self, program, users):
         """
             Makes a POST request to the ancile server with your program and users.
@@ -57,7 +48,6 @@ class AncileClient:
         request_json = {
             "token": self.__token,
             "program": program,
-            "purpose": self.__purpose,
             "users": users,
         }
 

@@ -13,9 +13,8 @@ An example of a single-user program is a simple function that fuzzes the user's 
 
     API_TOKEN = '' # your application's token
     ANCILE_URL = 'https://ancile.cs.vassar.edu/' # the ancile root URL
-    PURPOSE = 'research' # the purpose of your application in ancile settings
 
-    client = AncileClient(API_TOKEN, ANCILE_URL, PURPOSE)
+    client = AncileClient(API_TOKEN, ANCILE_URL)
 
     @ancile_program # turn the function into an ancile program
     def get_location(username, radius_):
