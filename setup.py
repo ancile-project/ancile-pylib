@@ -10,7 +10,11 @@ import sys
 from shutil import rmtree
 
 from setuptools import find_packages, setup, Command
-from sphinx.setup_command import BuildDoc
+
+try:
+    from sphinx.setup_command import BuildDoc
+except ModuleNotFoundError:
+    pass
 
 # Package meta-data.
 NAME = 'ancile-pylib'
